@@ -10,7 +10,9 @@ export async function getData(req, res) {
 }
 
 export async function insertData(req, res) {
-  const { nama, gambar, logo, link, tanggal } = req.body;
+  const { nama, link, tanggal } = req.body;
+  const gambar = req.files?.gambar ? req.files.gambar[0].filename : null;
+  const logo = req.files?.logo ? req.files.logo[0].filename : null;
   try {
     await pool.query(
       "INSERT INTO portfolio (portfolio_nama,gambar,logo,link,portfolio_tanggal) VALUES ($1,$2,$3,$4,$5)",
