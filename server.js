@@ -4,6 +4,7 @@ import { routeInfo } from "./src/route/routeInfo.js";
 import { routePortfolio } from "./src/route/routePortfolio.js";
 import { routePesan } from "./src/route/routePesan.js";
 import { routeSosial } from "./src/route/routeSosial.js";
+import { routeVisitor } from "./src/route/routeVisitor.js";
 
 const app = express();
 app.use(express.json());
@@ -18,5 +19,6 @@ app.use("/data", routeInfo);
 app.use("/data", routePortfolio);
 app.use("/data", routePesan);
 app.use("/data", routeSosial);
+app.use("/data", routeVisitor);
 
 app.listen(3000);
