@@ -29,7 +29,7 @@ export async function handleLogin(req, res) {
 
     // jika email tidak ada
     if (resp.rows.length === 0) {
-      res.status(400).json({ message: "User tidak ditemukan" });
+      return res.status(400).json({ message: "User tidak ditemukan" });
     }
 
     // pencocokan password
@@ -38,7 +38,7 @@ export async function handleLogin(req, res) {
 
     // jika password salah
     if (!isMatch) {
-      res.status(400).json({ message: "Password salah" });
+      return res.status(400).json({ message: "Password salah" });
     }
 
     // pertukaran token
