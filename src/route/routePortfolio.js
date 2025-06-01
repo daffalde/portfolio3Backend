@@ -13,6 +13,7 @@ export const routePortfolio = express.Router();
 routePortfolio.get("/portfolio", getData);
 routePortfolio.post(
   "/portfolio",
+  authToken,
   upload.fields([
     { name: "gambar", maxCount: 1 },
     { name: "logo", maxCount: 1 },
