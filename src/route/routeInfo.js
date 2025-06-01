@@ -1,7 +1,8 @@
 import express from "express";
-import { getInfo } from "../controller/infoController.js";
+import { getData, insertUpdate } from "../controller/infoController.js";
 import { authToken } from "../middleware/middleware.js";
 
 export const routeInfo = express.Router();
 
-routeInfo.get("/info", authToken, getInfo);
+routeInfo.get("/info", getData);
+routeInfo.patch("/info/:id", authToken, insertUpdate);
