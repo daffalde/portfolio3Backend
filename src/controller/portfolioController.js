@@ -11,12 +11,15 @@ export async function getData(req, res) {
 
 export async function insertData(req, res) {
   const { nama, link, tanggal } = req.body;
-  const gambar = req.files?.gambar ? req.files.gambar[0].filename : null;
-  const logo = req.files?.logo ? req.files.logo[0].filename : null;
+  const gambar = req.files.logo[0].filename;
+  const logo = req.files.logo[0].filename;
+
+  const gambarPath = `https://raw.githubusercontent.com/daffalde/portfolio3Backend/refs/heads/main/uploads/${gambar}`;
+  const logoPath = `https://raw.githubusercontent.com/daffalde/portfolio3Backend/refs/heads/main/uploads/${logo}`;
   try {
     await pool.query(
       "INSERT INTO portfolio (portfolio_nama,gambar,logo,link,portfolio_tanggal) VALUES ($1,$2,$3,$4,$5)",
-      [nama, gambar, logo, link, tanggal]
+      [nama, gambarPath, logoPath, link, tanggal]
     );
     res.json({ message: "Data ditmabahkan" });
   } catch (e) {
