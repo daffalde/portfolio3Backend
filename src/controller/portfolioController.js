@@ -13,7 +13,7 @@ export async function getData(req, res) {
 }
 
 export async function insertData(req, res) {
-  const { nama, link, tanggal } = req.body;
+  const { nama, link, tanggal, deskripsi } = req.body;
   const gambar = req.files.gambar[0];
   const logo = req.files.logo[0];
 
@@ -44,8 +44,8 @@ export async function insertData(req, res) {
     const gambarPath = `https://fra.cloud.appwrite.io/v1/storage/buckets/683c4dbb00115cec05dd/files/gambar${date}/view?project=683c4dac0015a670fa6b&mode=admin`;
     const logoPath = `https://fra.cloud.appwrite.io/v1/storage/buckets/683c4dbb00115cec05dd/files/logo${date}/view?project=683c4dac0015a670fa6b&mode=admin`;
     await pool.query(
-      "INSERT INTO portfolio (portfolio_nama,gambar,logo,link,portfolio_tanggal) VALUES ($1,$2,$3,$4,$5)",
-      [nama, gambarPath, logoPath, link, tanggal]
+      "INSERT INTO portfolio (portfolio_nama,gambar,logo,link,portfolio_tanggal,deskripsi) VALUES ($1,$2,$3,$4,$5,$6)",
+      [nama, gambarPath, logoPath, link, tanggal, deskripsi]
     );
     res.json({ message: "Data ditmabahkan" });
   } catch (e) {
@@ -82,7 +82,7 @@ export async function handleDelete(req, res) {
 
 export async function insertUpdate(req, res) {
   const { id } = req.params;
-  const { nama, link, tanggal } = req.body;
+  const { nama, link, tanggal, deskripsi } = req.body;
   const gambar = req.files.gambar[0];
   const logo = req.files.logo[0];
 
@@ -131,8 +131,8 @@ export async function insertUpdate(req, res) {
 
     // ________________________________________
     await pool.query(
-      "UPDATE portfolio SET portfolio_nama = ($1),gambar = ($2),logo = ($3),link = ($4),portfolio_tanggal = ($5) WHERE id_portfolio = ($6) ",
-      [nama, gambarPath, logoPath, link, tanggal, id]
+      "UPDATE portfolio SET portfolio_nama = ($1),gambar = ($2),logo = ($3),link = ($4),portfolio_tanggal = ($5),deskripsi = ($6) WHERE id_portfolio = ($7) ",
+      [nama, gambarPath, logoPath, link, tanggal, deskripsi, id]
     );
     res.json({ message: "Data diupdate" });
   } catch (e) {
