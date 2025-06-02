@@ -21,4 +21,12 @@ routePortfolio.post(
   insertData
 );
 routePortfolio.delete("/portfolio/:id", authToken, handleDelete);
-routePortfolio.patch("/portfolio/:id", authToken, insertUpdate);
+routePortfolio.patch(
+  "/portfolio/:id",
+  authToken,
+  upload.fields([
+    { name: "gambar", maxCount: 1 },
+    { name: "logo", maxCount: 1 },
+  ]),
+  insertUpdate
+);
