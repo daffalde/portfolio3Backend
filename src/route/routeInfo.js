@@ -6,9 +6,4 @@ import { upload } from "../middleware/multer.js";
 export const routeInfo = express.Router();
 
 routeInfo.get("/info", getData);
-routeInfo.patch(
-  "/info/:id",
-  authToken,
-  upload.fields([{ name: "picture", maxCount: 1 }]),
-  insertUpdate
-);
+routeInfo.patch("/info/:id", authToken, insertUpdate);
