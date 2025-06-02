@@ -17,10 +17,9 @@ export async function insertUpdate(req, res) {
 
   try {
     // get img name
-    const resp = await pool.query(
-      "SELECT * FROM info WHERE id_portfolio = ($1)",
-      [id]
-    );
+    const resp = await pool.query("SELECT * FROM info WHERE id_info = ($1)", [
+      id,
+    ]);
     await pool.query(
       "UPDATE info SET info_nama = ($1),info_email = ($2),daerah = ($3),provinsi = ($4),negara = ($5),spesialis = ($6) WHERE id_info = ($7) ",
       [nama, email, daerah, provinsi, negara, spesialis, id]
